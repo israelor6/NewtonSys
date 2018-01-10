@@ -18,6 +18,9 @@ module.exports = {
 		publicPath: '/',	
 		filename: '[name].[chunkhash].js'
 	},
+	resolve: {
+		extensions: ['.js', '.jsx']
+	},
 	plugins: [
 		new BundleAnalyzerPlugin({analyzerMode: 'static', openAnalyzer: true}),
 		new webpack.DefinePlugin({ 'process.env': { NODE_ENV: JSON.stringify('production') } }),	
