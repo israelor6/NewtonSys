@@ -1,6 +1,19 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './App.css';
-import App from './App';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import App from './app';
+import getMuiTheme from 'material-ui/styles/getMuiTheme';
+import darkBaseTheme from 'material-ui/styles/baseThemes/darkBaseTheme';
 
-ReactDOM.render(<App />, document.getElementById('app'));
+const muiTheme = getMuiTheme({isRtl: true});
+
+const Index = () => (
+  <MuiThemeProvider muiTheme={muiTheme}>
+    <App />
+  </MuiThemeProvider>
+);
+
+ReactDOM.render(
+  <Index />,
+  document.getElementById('app')
+);

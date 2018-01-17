@@ -1,0 +1,23 @@
+.logo {
+    display: inline-block;
+    position: fixed;
+    top: 10px;
+    width: 100%;
+    z-index: 3!important;
+    text-align: center;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.logo a {
+    letter-spacing: -1px;
+    color: rgba(69,85,102,.9);
+    font-size: 1.2em;
+    font-weight: 700;
+    text-decoration: none;
+    text-shadow: 0 0 2px #ffefef;
+}

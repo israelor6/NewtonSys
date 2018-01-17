@@ -1,5 +1,13 @@
 .App {
   text-align: center;
+	max-height:100%;
+	overflow-y: hidden;
+}
+
+.menu-button {
+	position: absolute;
+	top: 20px;
+	right: 0;
 }
 
 .App-logo {

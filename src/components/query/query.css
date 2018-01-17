@@ -1,0 +1,19 @@
+.container {
+	display: flex;
+
+	transition-property: all;
+	transition-duration: .5s;
+	transition-timing-function: cubic-bezier(0, 1, 0.5, 1);
+}
+
+.field {
+	flex: 3;
+}
+
+.cond {
+	flex: 1;
+}
+
+.filter {
+	flex: 3;
+}

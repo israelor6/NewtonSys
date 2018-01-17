@@ -23,6 +23,8 @@ coverage
 # Grunt intermediate storage (http://gruntjs.com/creating-plugins#storing-task-files)
 .grunt
 
+.idea
+
 # Bower dependency directory (https://bower.io/)
 bower_components
 
@@ -62,3 +64,4 @@ db.json
 
 # dist folder
 dist
+yarn.lock

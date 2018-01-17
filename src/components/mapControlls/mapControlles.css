@@ -1,0 +1,11 @@
+.icon {
+	border: 1px solid white;
+	margin: 8px;
+	margin-bottom: 20px;
+	text-align: center;
+	cursor: pointer;
+}
+
+.icon:hover {
+	background-color: white;
+}
