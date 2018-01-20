@@ -8,8 +8,8 @@ export default class Logo extends React.Component {
     render() {
         return (
             <div className={'logo'}>
-            <a href="./" data-reactid=".0.3.2.0">Newton</a>          
-            </div>
+            <a href="./" data-reactid=".0.3.2.0">Newton</a>
+						</div>
         );
     }
 }

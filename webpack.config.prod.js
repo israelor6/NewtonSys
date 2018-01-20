@@ -116,7 +116,10 @@ module.exports = {
 				}) 
 			},
 			{ test: /\.html$/, exclude: /index.html/, use: ['html-loader'] },
-			{ test: /\.(png|woff|woff2|eot|ttf|svg)$/, use: 'url-loader' }
+			{
+				test: /\.(png|jpg|svg)$/,
+				loader: 'url-loader?limit=10000'
+			}
 		]
 	}
-}
+};

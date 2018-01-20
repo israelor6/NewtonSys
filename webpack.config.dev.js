@@ -39,8 +39,8 @@ module.exports =  {
 			{test: /\.jsx?$/, exclude: /node_modules/, loaders: ['babel-loader']},
 			{test: /\.css$/, loaders: ['style-loader', 'css-loader']},
 			{
-				test: /\.(png|jpg)$/,
-				loader: 'url?limit=25000'
+				test: /\.(png|jpg|svg)$/,
+				loader: 'url-loader?limit=10000'
 			}
 		]
 	},
@@ -49,4 +49,4 @@ module.exports =  {
 		inline: true,
 		port: 3000
 	}
-}
+};

@@ -1,5 +1,4 @@
 import React, { Component } from 'react'; 
-import Header from './components/header/header';
 import MapInit from './components/map/mapInit';
 import styles from './App.css';
 import Corner from './components/corner/corner';
@@ -10,7 +9,7 @@ class App extends Component {
   render() {
     return (
       <div className={styles.App}>
-				<Menu />
+				{/*<Menu />*/}
         <MapInit />
         <Logo />
         <Corner />
