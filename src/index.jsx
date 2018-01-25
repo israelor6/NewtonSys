@@ -1,19 +1,26 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import App from './app';
+import {Provider} from 'react-redux';
+import App from './App.jsx';
+import {loadLayers} from "./actions/builderQueryAction";
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
-import darkBaseTheme from 'material-ui/styles/baseThemes/darkBaseTheme';
+import configureStore from './store/configureStore';
 
 const muiTheme = getMuiTheme({isRtl: true});
 
+const store = configureStore();
+store.dispatch(loadLayers());
+
 const Index = () => (
-  <MuiThemeProvider muiTheme={muiTheme}>
-    <App />
-  </MuiThemeProvider>
+	<MuiThemeProvider muiTheme={muiTheme}>
+		<App/>
+	</MuiThemeProvider>
 );
 
 ReactDOM.render(
-  <Index />,
-  document.getElementById('app')
+	<Provider store={store}>
+		<Index/>
+	</Provider>,
+	document.getElementById('app')
 );

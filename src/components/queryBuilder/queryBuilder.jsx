@@ -1,15 +1,19 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import SelectField from 'material-ui/SelectField';
 import MenuItem from 'material-ui/MenuItem';
 import Query from '../query/query';
 import IconButton from 'material-ui/IconButton';
 import RaisedButton from 'material-ui/RaisedButton';
+import {bindActionCreators} from 'redux';
+import {connect} from 'react-redux';
+import * as builderQueryAction from '../../actions/builderQueryAction';
 
 import PlusIcon from 'material-ui/svg-icons/content/add-circle-outline';
 
 import './queryBuilder.css';
 
-export default class QueryBuilder extends React.Component {
+class QueryBuilder extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {layer: null, filters: []};
@@ -26,6 +30,10 @@ export default class QueryBuilder extends React.Component {
 		QueryBuilder.context.setState({
 			filters: QueryBuilder.context.state.filters
 		})
+	}
+
+	onClickSort() {
+		QueryBuilder.context.props.actions.searchNewQuery(builderQueryAction.searchNewQuery("fff"));
 	}
 
 	render() {
@@ -45,12 +53,9 @@ export default class QueryBuilder extends React.Component {
 					value={this.state.layer}
 					onChange={QueryBuilder.chooseLayer}
 				>
-					<MenuItem value={null} primaryText="בחר שכבה"/>
-					<MenuItem value={1} primaryText="בלה בלה בלה"/>
-					<MenuItem value={2} primaryText="עוד בלה בלה"/>
-					<MenuItem value={3} primaryText="מחר"/>
-					<MenuItem value={4} primaryText="לך"/>
-					<MenuItem value={5} primaryText="בא"/>
+					{this.props.layers.map(x =>
+						<MenuItem key={x.id} value={x.id} primaryText={x.title}/>)
+					}
 				</SelectField>
 				<IconButton tooltip="הוסף תנאי חיפוש"
 										onClick={this.addFilter}
@@ -65,8 +70,28 @@ export default class QueryBuilder extends React.Component {
 					)}
 				</div>}
 				<br/>
-				<RaisedButton className={'filter-button'} label="סנן" primary={true} />
+				<RaisedButton className={'filter-button'} label="סנן" primary={true} onClick={this.onClickSort}/>
 			</div>
 		);
 	}
 }
+
+function mapStateToProps(state) {
+	return {
+		actions: bindActionCreators(builderQueryAction, state),
+		layers: state.buildQuery.layers
+	};
+}
+
+function mapDispatchToProps(dispatch) {
+	return {
+		actions: bindActionCreators(builderQueryAction, dispatch)
+	}
+}
+
+QueryBuilder.propTypes = {
+	actions: PropTypes.object.isRequired,
+	layers: PropTypes.array.isRequired
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(QueryBuilder);

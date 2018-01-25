@@ -8,8 +8,10 @@ import {
 	TableRow,
 	TableRowColumn,
 } from 'material-ui/Table';
+import PropTypes from 'prop-types';
 import TextField from 'material-ui/TextField';
 import Toggle from 'material-ui/Toggle';
+import {connect} from "react-redux";
 
 const styles = {
 	propContainer: {
@@ -56,7 +58,7 @@ const tableData = [
 /**
  * A more complex example, allowing the table height to be set, and key boolean properties to be toggled.
  */
-export default class ResultTable extends Component {
+class ResultTable extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
@@ -119,3 +121,16 @@ export default class ResultTable extends Component {
 		);
 	}
 }
+
+function mapStateToProps(state) {
+	return {
+		layers: state.buildQuery.layers
+	}
+}
+
+
+ResultTable.propTypes = {
+	layers: PropTypes.array.isRequired
+};
+
+export default connect(mapStateToProps, {})(ResultTable);

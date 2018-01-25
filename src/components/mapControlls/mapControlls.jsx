@@ -3,6 +3,11 @@ import Flight from 'material-ui/svg-icons/action/flight-takeoff';
 import Direction from 'material-ui/svg-icons/maps/directions';
 import Layers from 'material-ui/svg-icons/maps/layers';
 import Point from 'material-ui/svg-icons/maps/pin-drop';
+import Popover from 'material-ui/Popover';
+import Menu from 'material-ui/Menu';
+import MenuItem from 'material-ui/MenuItem';
+import * as mapConfig from '../../configs/mapConfig';
+
 
 import './mapControlles.css';
 import MapHandler from "../map/mapHandler";
@@ -10,8 +15,24 @@ import MapHandler from "../map/mapHandler";
 export default class MapControls extends React.Component {
 	constructor(props) {
 		super(props);
-		this.state = {};
+		this.state = {open: false, selectedTile: ''};
 		MapControls.context = this;
+	}
+
+	handleClick (event){
+		// This prevents ghost click.
+		event.preventDefault();
+
+		MapControls.context.setState({
+			open: true,
+			anchorEl: event.currentTarget,
+		});
+	}
+
+	handleRequestClose () {
+		MapControls.context.setState({
+			open: false,
+		});
 	}
 
 	drawNewPolygon() {
@@ -20,6 +41,10 @@ export default class MapControls extends React.Component {
 
 	addPoint() {
 		MapHandler.addPoint();
+	}
+
+	chooseTile(event, value) {
+	MapHandler.changeLayer(value);
 	}
 
 	drawNewPolyline() {
@@ -40,7 +65,7 @@ export default class MapControls extends React.Component {
 				<div className={'icon'}>
 					<Direction className={'icon-Size'} style={iconStyle} />
 				</div>
-				<div className={'icon'}>
+				<div className={'icon'} onClick={this.handleClick}>
 					<Layers className={'icon-Size'} style={iconStyle} />
 				</div>
 				<div className={'icon'} onClick={this.addPoint}>
@@ -56,6 +81,19 @@ export default class MapControls extends React.Component {
 						<path fill={"white"} d={"M16,2V8H17.08L14.95,13H14.26L12,9.97V5H6V11H6.91L4.88,16H2V22H8V16H7.04L9.07,11H10.27L12,13.32V19H18V13H17.12L19.25,8H22V2M18,4H20V6H18M8,7H10V9H8M14,15H16V17H14M4,18H6V20H4"} />
 					</svg>
 				</div>
+				<Popover
+					open={this.state.open}
+					anchorEl={this.state.anchorEl}
+					anchorOrigin={{horizontal: 'right', vertical: 'bottom'}}
+					targetOrigin={{horizontal: 'right', vertical: 'top'}}
+					onRequestClose={this.handleRequestClose}
+				>
+					<Menu value={this.state.selectedTile} onChange={this.chooseTile}>
+						{mapConfig.mapTiles.map((x) => {
+							return <MenuItem value={x.tile} primaryText={x.name} key={x.id}/>
+						})}
+					</Menu>
+				</Popover>
 			</div>
 		)
 	}

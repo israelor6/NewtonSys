@@ -12,10 +12,6 @@ export default class MapInit extends React.Component {
 		MapInit.context.mapHandler = new MapHandler('map');
 	}
 
-	static bla() {
-		console.log('ff');
-	}
-
 	render() {
 		return (
 			<div id={'map'}>
