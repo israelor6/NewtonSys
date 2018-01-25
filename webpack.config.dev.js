@@ -6,6 +6,7 @@ module.exports =  {
 	devtool: 'inline-source-map',
 	entry: [
 		'babel-polyfill',
+		'react-hot-loader/patch',
 		path.resolve(__dirname, 'src/index.jsx')
 	],
 	target: 'web',
