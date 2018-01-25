@@ -9,8 +9,8 @@ const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPl
 
 module.exports = {
 	entry: {
-		vendor: path.resolve(__dirname, 'src/vendor'),	
-		main: path.resolve(__dirname, 'src/index.jsx')
+		vendor: ['babel-polyfill', path.resolve(__dirname, 'src/vendor')],
+		main: ['babel-polyfill', path.resolve(__dirname, 'src/index.jsx')]
 	},
 	target: 'web',
 	output: {

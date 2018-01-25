@@ -1,4 +1,4 @@
-import React, { Component } from 'react'; 
+import React, { Component } from 'react';
 import MapInit from './components/map/mapInit';
 import styles from './App.css';
 import Corner from './components/corner/corner';

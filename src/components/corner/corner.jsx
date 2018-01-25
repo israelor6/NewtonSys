@@ -7,7 +7,6 @@ import ResultTable from '../resultTable/resultTable';
 import MapControlls from '../mapControlls/mapControlls';
 
 import './corner.css';
-
 export default class Corner extends React.Component {
 
 	constructor(props) {

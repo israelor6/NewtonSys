@@ -3,7 +3,6 @@ import 'leaflet/dist/leaflet.css';
 import 'leaflet-draw/dist/leaflet.draw.css';
 import 'leaflet-mouse-position/src/L.Control.MousePosition.css';
 import './mapHandler.css';
-import swal from 'sweetalert';
 import copy from 'copy-to-clipboard';
 
 import MP from 'leaflet-mouse-position/src/L.Control.MousePosition';  // eslint-disable-line
@@ -103,13 +102,14 @@ export default class MapHandler {
 		});
 	}
 
-	copyPosition(e) {
+	async copyPosition(e) {
 		copy(e.latlng.toString());
+		let swal = await import(/* webpackChunkName: "swal" */ 'sweetalert');
+
 		swal("מיקום הועתק ללוח", {
 			button: false,
 			timer: 1000,
 		});
-
 	}
 
 	center(e) {

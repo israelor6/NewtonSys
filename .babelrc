@@ -1,6 +1,7 @@
 {
 	"presets": [
-		"latest",
+		"env",
 		"react"
-	]
+	],
+	"plugins": ["transform-async-to-generator", "syntax-dynamic-import"]
 }
