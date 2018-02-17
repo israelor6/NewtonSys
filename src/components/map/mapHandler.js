@@ -140,4 +140,8 @@ export default class MapHandler {
 		MapHandler.context.drawControl._toolbars.draw._modes.polyline.handler.enable();
 	}
 
+	static jupTo(e) {
+		MapHandler.context.map.panTo(e);
+	}
+
 }

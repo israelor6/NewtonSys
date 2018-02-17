@@ -51,6 +51,45 @@ export default class MapControls extends React.Component {
 		MapHandler.drawNewPolyline();
 	}
 
+	async jumpTo() {
+		let swal = await import(/* webpackChunkName: "swal" */ 'sweetalert');
+		swal({
+			content: {
+				element: "input",
+				attributes: {
+					placeholder: "Lat/Lng",
+					type: "text",
+					dir: 'ltr'
+				},
+			},
+			title: 'הכנס נ.צ. לקפיצה',
+			buttons: {
+				cancel: {
+					text: "בטל",
+					value: null,
+					visible: true,
+					className: "",
+					closeModal: true,
+				},
+				confirm: {
+					text: "אישור",
+					value: true,
+					visible: true,
+					className: "",
+					closeModal: true
+				}
+			}
+		}).then(function (x) {
+			if(x) {
+				let lngLat = {
+					lng: x.split("/").map(item => item.trim())[1],
+					lat: x.split("/").map(item => item.trim())[0]
+				};
+				MapHandler.jupTo(lngLat);
+			}
+		})
+	}
+
 	render() {
 		const iconStyle = {
 			color: 'white',
@@ -59,7 +98,7 @@ export default class MapControls extends React.Component {
 
 		return (
 			<div>
-				<div className={'icon'}>
+				<div className={'icon'} onClick={this.jumpTo}>
 					<Flight className={'icon-Size'} style={iconStyle}/>
 				</div>
 				<div className={'icon'}>
