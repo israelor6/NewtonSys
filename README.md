@@ -11,7 +11,7 @@ git clone https://github.com/israelor6/NewtonSys.git
 * install nodeJs, npm (or yarn).
 
 ```
-cd react-redux-es6
+cd NewtonSys
 ```
 
 ### Installing
